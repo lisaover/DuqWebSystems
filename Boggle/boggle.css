@@ -1,0 +1,26 @@
+
+.center {margin-left:auto; margin-right:auto; }
+
+/* In HTML 5, this is the recommended way to add borders to tables. */
+table, td, th { border: 1px solid gray }
+
+/* Most of this is to prevent letters from being "selected" (highlighted)
+   by mouse clicks and drags. */
+tbody { 
+font-size:xx-large; 
+cursor:default;
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+}
+
+/* In HTML 5, the cellpadding attribute of table is not allowed.  
+   So we use CSS padding of TD's to get the same effect.
+   I'm using monospace font so that the board does not change
+   width when a new game is started, which often happens with
+   other fonts. */
+td { padding:15px; font-family:monospace; font-weight:bold; }
+
+

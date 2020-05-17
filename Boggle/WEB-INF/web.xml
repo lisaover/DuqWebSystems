@@ -1,0 +1,60 @@
+<web-app 
+  xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+  version="2.4">
+
+  <display-name>Boggle</display-name>
+  <description>
+    A three-letter word Boggle game.
+  </description>
+  <!-- The following element creates an initialization parameter -->
+  <context-param>
+    <param-name>username</param-name>
+    <param-value>""</param-value>
+  </context-param>
+
+  <servlet>
+    <servlet-name>Controller</servlet-name>
+    <servlet-class>Controller</servlet-class>
+  </servlet>
+  
+
+  <servlet>
+    <servlet-name>Game</servlet-name>
+    <jsp-file>/game.jspx</jsp-file>
+  </servlet>
+  
+
+  <servlet>
+    <servlet-name>signIn</servlet-name>
+    <jsp-file>/sign-in.jspx</jsp-file>
+  </servlet>
+
+
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/do/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/login/*</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Controller</servlet-name>
+    <url-pattern>/score/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>signIn</servlet-name>
+    <url-pattern>/sign-in/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>Game</servlet-name>
+    <url-pattern>/game/*</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>1</session-timeout>
+  </session-config>
+</web-app>

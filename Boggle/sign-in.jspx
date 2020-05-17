@@ -1,0 +1,38 @@
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+  <jsp:directive.page contentType="text/html" />  
+  <jsp:output
+    omit-xml-declaration="yes"
+    doctype-root-element="html"
+    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+    doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
+    <body>
+
+    <jsp:scriptlet>
+      /* Obtain the user input. */
+    </jsp:scriptlet> 
+       
+        <h3> 
+         Welcome to the JSP Boggle Game!
+        </h3>
+
+        <c:url var="signIn" value="/do/login">
+        </c:url>
+
+        <form action='${signIn}' method='post'>
+        <div>
+        <label>
+        Please sign in: <input type='text' name='username' />
+        </label> 
+        
+        <br />
+        <input type='submit' name='doit' value='Sign In' />
+        </div>
+        </form>
+     
+      </body>
+</html>

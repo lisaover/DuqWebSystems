@@ -1,0 +1,119 @@
+<html 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:jsp="http://java.sun.com/JSP/Page"
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt">
+  <jsp:directive.page contentType="text/html" />
+  <jsp:output 
+    omit-xml-declaration="yes"
+    doctype-root-element="html"
+    doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+    doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
+
+  <head>
+    <title>
+      Boggle.jspx
+    </title>
+    <link rel='stylesheet' type='text/css' href='/Boggle/boggle.css' title='Style Sheet' />
+    <script type='text/javascript' src='/Boggle/boggleUI.js'>
+      <c:out value=" " />
+    </script>
+  </head>
+  <body onload="init();">
+    <div style="width:300px;float:left">
+      <div>
+	<table class="center">
+	  <tbody>
+
+         <c:forEach var="i" begin="0" end="3">
+          <tr>
+            <c:forEach var="j" begin="0" end="3">
+             <td><span><c:out value="${boggleGame.board[i][j]}">         			      </c:out>
+             </span></td>
+            </c:forEach>
+          </tr>
+         </c:forEach>
+
+    	  </tbody>
+	</table>
+      </div>
+      <div style="margin-top:6px;">
+
+      <c:url var="newGame" value="/do">
+        </c:url>     
+
+	<form action='${newGame}' method='get'>
+	  <fieldset class="center" style="width:15em;">
+	    <input type="text" name="wordbox" id="wordbox" class="center"
+		   style="display:block; font:12pt monospace;" />
+	    <p id="msgArea" style="text-align:center; font-weight:bold">
+	      &#160;
+	    </p>
+	    <p style="text-align:center;">
+	      Type word and press Enter
+	      <br />
+	      or
+	      <br />
+	      Swipe on the board!
+	    </p>
+	    <button type="button" id="scoreMe" style="float:left">
+	      Score Me!
+	    </button>
+	    <button type="button" id="newGame" style="float:right">
+	      New Game
+	    </button>
+	  </fieldset>
+	</form>
+      </div>
+    </div>
+    <div style="width:300px; float:left;">
+      <div style="background-color:tan; padding:5px">
+
+     <c:url var="score" value="/do/score">
+        </c:url>
+
+      <form action='${score}' method='post'>
+	<p style="text-align:center">
+	  <strong>Words Found</strong><br />
+	  <textarea id="wordsFound" name="wordsFound"
+		    readonly="readonly" rows="10"
+		    style="overflow:auto;"><c:if test="${showScores}">${boggleGame.wordsFound}</c:if><c:out value=" " />
+
+	  </textarea>
+	  <input type="submit" id="wordsFoundButton" 
+		 name="wordsFoundButton" value="wordsFoundButton" 
+		 style="display:none" />
+	</p>
+	</form>
+      </div>
+      <div id="wordsMissedDiv" 
+	   style="background-color:goldenrod; padding:5px; margin-top:6px;">
+	<p style="text-align:center">
+	  <strong>Words Missed</strong><br />
+	  <textarea id="wordsMissed" readonly="readonly" rows="10"
+	    style="overflow:auto;"><c:if test="${showScores}">${boggleGame.wordsMissed}</c:if>	   
+	  <c:out value=" " /></textarea>
+	</p>
+      </div>
+    </div>
+    <div id="scoreDiv" 
+	 style="clear:left; width:600px; padding-top:20px;
+		text-align:center; font-size:18px">
+
+       <c:if test="${showScores}">
+          <c:out value="${username}" />, you scored      		
+          <fmt:formatNumber type="percent">              
+           ${boggleGame.numberFound/boggleGame.numberOnBoard}
+          </fmt:formatNumber>
+          this time, and 
+          <fmt:formatNumber type="percent"> 
+          ${boggleGame.totalFound/boggleGame.totalOnBoard}
+          </fmt:formatNumber>
+          this session.
+       
+       </c:if>
+
+    </div>
+
+  </body>
+</html>
